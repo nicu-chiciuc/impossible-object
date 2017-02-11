@@ -1,11 +1,4 @@
-import Test, {a, b} from './src/triangle'
 
-console.log(Test)
-
-const t = new Test(4)
-console.log(t.a)
-
-console.log(a, b)
 
 
 function ready(fn) {
@@ -42,7 +35,25 @@ ready(function () {
 		renderMode: 'destination-out'
 	}
 
-	const cScale = 1
+	const compositeTypes = [
+		'source-over',
+		'source-in',
+		'source-out',
+		'source-atop',
+		'destination-over',
+		'destination-in',
+		'destination-out',
+		'destination-atop',
+		'lighter',
+		'copy',
+		'xor',
+		'multiply',
+		'screen',
+		'overlay',
+		'darken',
+		'lighten',
+		'color-edge'
+	]
 
 	const gui = new dat.GUI();
 	const cubeWidthDatGui = gui.add(setupObj, 'cubeWidth', 20, 300)
@@ -59,7 +70,7 @@ ready(function () {
 	const secretFolder = gui.addFolder('secret')
 	secretFolder.add(setupObj, 'time', 0.0, 1.0).listen().onChange(safeRedraw)
 	secretFolder.add(setupObj, 'showNumbers').onChange(safeRedraw)
-	secretFolder.add(setupObj, 'renderMode', ['destination-out', 'source-atop']).onChange(safeRedraw)
+	secretFolder.add(setupObj, 'renderMode', compositeTypes).onChange(safeRedraw)
 
 	const crn = {x: 260, y: 400}
 
@@ -362,15 +373,17 @@ ready(function () {
 			const pnow = timePoints[ind]
 			const width = setupObj.cubeWidth
 
-			magicCanvas.width = width*cScale
-			magicCanvas.height = width*cScale
+			// console.log('here')
+			// console.log(canvas.width)
+
+			magicCanvas.width = canvas.width 
+			magicCanvas.height = canvas.height 
 
 			// mag.clearRect(0, 0, width, width)
 
 			mag.globalCompositeOperation = 'source-over'
 			mag.drawImage(hlpCanvas,
-				0, 0, width, width,
-				0, 0, width*cScale, width*cScale)
+				crn.x + pnow.x, crn.y + pnow.y)
 
 			if (drawNumber) {
 				mag.font = "30px Arial"
@@ -381,9 +394,9 @@ ready(function () {
 			;(models[setupObj.model][ind].parents || []).forEach(num => {
 				const posX = timePoints[num].x - pnow.x
 				const posY = timePoints[num].y - pnow.y
+
 				mag.drawImage(hlpCanvas,
-					0, 0, width, width,
-					posX*cScale, posY*cScale, width*cScale, width*cScale)
+					crn.x+ timePoints[num].x, crn.y+ timePoints[num].y)
 			})
 
 			
@@ -394,9 +407,7 @@ ready(function () {
 		timePoints.forEach((pnt, ind, arr) => {
 			prepareMagicCanvas(ind, setupObj.showNumbers)
 
-			ctx.drawImage(magicCanvas,
-				0, 0, setupObj.cubeWidth*cScale, setupObj.cubeWidth*cScale,
-				crn.x + pnt.x, crn.y + pnt.y, setupObj.cubeWidth, setupObj.cubeWidth)
+			ctx.drawImage(magicCanvas, 0, 0)
 		})
 
 		if (!setupObj.run)
