@@ -129,7 +129,7 @@ ready(function () {
 		hlp.clearRect(0, 0, setupObj.cubeWidth, setupObj.cubeWidth)
 
 	  const middle = {x:setupObj.cubeWidth/2, y:setupObj.cubeWidth/2}
-	  const halfWidth = setupObj.cubeWidth/2
+	  const halfWidth = setupObj.cubeWidth/2 - 5
 
 	  hlp.lineWidth = 1
 	  hlp.globalAlpha = setupObj.alpha
