@@ -1,4 +1,4 @@
-
+import models from './src/models'
 
 
 function ready(fn) {
@@ -24,7 +24,7 @@ ready(function () {
 
 	  run: true,
 
-	  model: 'hex',
+	  model: 'standard',
 
 		speed: 10,
 
@@ -110,6 +110,8 @@ ready(function () {
 	const hlpCanvas = document.createElement('canvas')
 	document.body.appendChild(hlpCanvas)
 	const magicCanvas = document.createElement('canvas')
+	magicCanvas.width = canvas.width
+	magicCanvas.height = canvas.height
 
 
 
@@ -129,9 +131,10 @@ ready(function () {
 		hlp.clearRect(0, 0, setupObj.cubeWidth, setupObj.cubeWidth)
 
 	  const middle = {x:setupObj.cubeWidth/2, y:setupObj.cubeWidth/2}
-	  const halfWidth = setupObj.cubeWidth/2 - 5
+	  const halfWidth = setupObj.cubeWidth/2 - 2
 
 	  hlp.lineWidth = 1
+	  hlp.lineCap = 'round'
 	  hlp.globalAlpha = setupObj.alpha
 
 
@@ -142,6 +145,7 @@ ready(function () {
 	  hlp.lineTo(middle.x - cos60*halfWidth, middle.y - sin60*halfWidth)
 	  hlp.lineTo(middle.x - halfWidth, middle.y)
 	  hlp.lineTo(middle.x - cos60*halfWidth, middle.y + sin60*halfWidth)
+	  hlp.closePath()
 	  hlp.fill()
 	  hlp.stroke()
 
@@ -151,6 +155,7 @@ ready(function () {
 	  hlp.lineTo(middle.x - cos60*halfWidth, middle.y - sin60*halfWidth)
 	  hlp.lineTo(middle.x + cos60*halfWidth, middle.y - sin60*halfWidth)
 	  hlp.lineTo(middle.x + halfWidth, middle.y)
+	  hlp.closePath()
 	  hlp.fill()
 	  hlp.stroke()
 
@@ -160,13 +165,14 @@ ready(function () {
 	  hlp.lineTo(middle.x + halfWidth, middle.y)
 	  hlp.lineTo(middle.x + cos60*halfWidth, middle.y + sin60*halfWidth)
 	  hlp.lineTo(middle.x - cos60*halfWidth, middle.y + sin60*halfWidth)
+	  hlp.closePath()
 	  hlp.fill()
 	  hlp.stroke()
 
 
 	  if (setupObj.drawBorder) {
 	  	hlp.strokeStyle = 'black'
-	  	hlp.lineWidth = 1
+	  	hlp.lineWidth = 1.2
 
 	  	hlp.beginPath()
 			hlp.moveTo(middle.x - cos60*halfWidth, middle.y - sin60*halfWidth)
@@ -194,153 +200,7 @@ ready(function () {
 	    const y = start.y + dy*percent;
 	    return {x, y}
 	}
-
-
-	const models = {
-		'small' : [
-			{col: 1, row: 0, next: 1},
-			{col: 0, row: 0, next: 2},
-			{col: 0, row: 1, next: 3},
-			{col: 0, row: 2, next: 4},
-			{col: 1, row: 1, next: 5, parents: [0]},
-			{col: 2, row: 0, next: 0, parents: [0, 1]},
-		],
-
-		'standard' : [
-			{col: 1, row: 0, next: 1},
-			{col: 0, row: 0, next: 2},
-			{col: 0, row: 1, next: 3},
-			{col: 0, row: 2, next: 4},
-			{col: 0, row: 3, next: 5},
-			{col: 1, row: 2, next: 6},
-			{col: 2, row: 1, next: 7},
-			{col: 3, row: 0, next: 8},
-			{col: 2, row: 0, next: 0, parents: [0, 1, 2]},
-
-			// {col: 1, row: 1, next: 10},
-			// {col: 2, row: 1, next: 10},
-		],
-
-		'bigger': [
-			{col: 1, row: 0, next: 1},
-			{col: 0, row: 0, next: 2},
-			{col: 0, row: 1, next: 3},
-			{col: 0, row: 2, next: 4},
-			{col: 0, row: 3, next: 5},
-			{col: 0, row: 4, next: 6},
-			{col: 1, row: 3, next: 7},
-			{col: 2, row: 2, next: 8},
-			{col: 3, row: 1, next: 9},
-			{col: 4, row: 0, next: 10},
-			{col: 3, row: 0, next: 11},
-			{col: 2, row: 0, next: 0, parents: [0, 1, 2]},
-		],
-
-		'loop' : [
-			{col: 1, row:  0, next: 1},
-			{col: 0, row:  0, next: 2},
-			{col: 0, row:  1, next: 3},
-			{col: 0, row:  2, next: 4},
-			{col: 0, row:  3, next: 5},
-			{col: 1, row:  2, next: 6},
-			{col: 2, row:  1, next: 7},
-			{col: 3, row:  0, next: 8},
-			{col: 4, row: -1, next: 9},
-			{col: 5, row: -2, next: 10},
-			{col: 6, row: -3, next: 11},
-			{col: 6, row: -2, next: 12},
-			{col: 6, row: -1, next: 13},
-			{col: 6, row:  0, next: 14},
-			{col: 5, row:  0, next: 15},
-			{col: 4, row:  0, next: 16},
-			{col: 3, row:  0, next: 17},
-			{col: 2, row:  0, next: 0, parents: [0, 1, 2]},
-		],
-
-		'loop2' : [
-			{col: 1, row:  0, next: 1},
-			{col: 0, row:  0, next: 2},
-			{col: 0, row:  1, next: 3},
-			{col: 0, row:  2, next: 4},
-			{col: 0, row:  3, next: 5},
-			{col: 1, row:  2, next: 6},
-			{col: 2, row:  1, next: 7},
-			{col: 3, row:  0, next: 8},
-			{col: 4, row: -1, next: 9},
-			{col: 5, row: -2, next: 10},
-			{col: 6, row: -3, next: 11},
-			{col: 6, row: -2, next: 12},
-			{col: 6, row: -1, next: 13},
-			{col: 6, row:  0, next: 14},
-			{col: 5, row:  0, next: 15, parents: [6, 7, 8]},
-			{col: 4, row:  0, next: 16, parents: [5, 6, 7, 8]},
-			{col: 3, row:  0, next: 17, parents: [5, 6, 7, 8]},
-			{col: 2, row:  0, next: 0, parents: [0, 1, 2, 5, 6, 7]},
-		],
-
-		'hexSmall': [
-			{col: -1, row:  0, next:  1},
-			{col: -2, row:  0, next:  2},
-			{col: -1, row: -1, next:  3},
-			{col:  0, row: -2, next:  4},
-			{col:  0, row: -1, next:  5},
-			{col:  0, row:  0, next:  6},
-			{col:  0, row:  1, next:  7},
-			{col:  0, row:  2, next:  8},
-			{col: -1, row:  2, next:  9},
-			{col: -2, row:  2, next: 10},
-			{col: -1, row:  1, next: 11},
-			{col:  0, row:  0, next: 12},
-			{col:  1, row: -1, next: 13},
-			{col:  2, row: -2, next: 14},
-			{col:  2, row: -1, next: 15},
-			{col:  2, row:  0, next: 16},
-			{col:  1, row:  0, next: 17},
-			{col:  0, row:  0, next:  0, parents: [0, 1, 3]},
-		],
-
-		'hex': [
-			{col: -2, row:  0, next:1 },
-			{col: -3, row:  0, next:2 },
-			{col: -2, row: -1, next:3 },
-			{col: -1, row: -2, next:4 },
-			{col:  0, row: -3, next:5 },
-			{col:  0, row: -2, next:6 },
-			{col:  0, row: -1, next:7 },
-
-			{col:  0, row:  0, next:8 },
-			{col:  0, row:  1, next:9 },
-			{col:  0, row:  2, next:10 },
-			{col:  0, row:  3, next:11 },
-			{col: -1, row:  3, next:12 },
-			{col: -2, row:  3, next:13 },
-			{col: -3, row:  3, next:14 },
-			{col: -2, row:  2, next:15 , parents: [6, 7, 8]},
-			{col: -1, row:  1, next:16 , parents: [6, 7, 8]},
-
-			{col:  0, row:  0, next:17 , parents: [5, 6, 7, 8]},
-			{col:  1, row: -1, next:18 , parents: [5, 6, 7]},
-
-
-			{col:  2, row: -2, next:19 },
-			{col:  3, row: -3, next:20 },
-			{col:  3, row: -2, next:21 },
-			{col:  3, row: -1, next:22 },
-			{col:  3, row:  0, next:23 },
-
-
-
-
-			{col:  2, row:  0, next:24 , parents: [15, 16, 17,  6, 7, 8]},
-			{col:  1, row:  0, next:25 , parents: [14, 15, 16, 17,  5, 6, 7, 8]},
-
-			{col:  0, row:  0, next:26 , parents: [14, 15, 16, 17, 5, 6, 7, 8]},
-			{col: -1, row:  0, next:0 , parents: [14, 15, 0, 1, 2, 5, 6, 7]},
-
-
-
-		]
-	}
+	
 
 	window.requestAnimationFrame(draw)
 
@@ -359,44 +219,41 @@ ready(function () {
 
 		const setPoints = currentModel.map(fromTriangleGrid).map(fn => fn(setupObj.cubeDistance * setupObj.cubeWidth))
 
-		const timePoints = setPoints.map((pnt, ind, arr) => 
+		const floatTimePoints = setPoints.map((pnt, ind, arr) => 
 			getLineXYatPercent(pnt, arr[currentModel[ind].next],
 				setupObj.time)
 		)
 
-		// const timePoints = floatTimePoints.map(({x, y}) => ({
-		// 	x: Math.round(x),
-		// 	y: Math.round(y)
-		// }))
+		const timePoints = floatTimePoints.map(({x, y}) => ({
+			x: crn.x + x,
+			y: crn.y + y
+		}))
 
 		function prepareMagicCanvas (ind, drawNumber=false) {
 			const pnow = timePoints[ind]
 			const width = setupObj.cubeWidth
 
-			// console.log('here')
-			// console.log(canvas.width)
-
-			magicCanvas.width = canvas.width 
-			magicCanvas.height = canvas.height 
-
-			// mag.clearRect(0, 0, width, width)
+			mag.clearRect(pnow.x, pnow.y, width, width)
+			// mag.clearRect(0, 0, magicCanvas.width, magicCanvas.height)
 
 			mag.globalCompositeOperation = 'source-over'
 			mag.drawImage(hlpCanvas,
-				crn.x + pnow.x, crn.y + pnow.y)
+				 pnow.x,  pnow.y)
 
 			if (drawNumber) {
+				console.log('here')
 				mag.font = "30px Arial"
-				mag.fillText(''+ind, width/2, width/2)
+				mag.fillText(''+ind, pnow.x + width/2, pnow.y + width/2)
 			}
 			
 			mag.globalCompositeOperation = setupObj.renderMode
+
 			;(models[setupObj.model][ind].parents || []).forEach(num => {
 				const posX = timePoints[num].x - pnow.x
 				const posY = timePoints[num].y - pnow.y
 
 				mag.drawImage(hlpCanvas,
-					crn.x+ timePoints[num].x, crn.y+ timePoints[num].y)
+					timePoints[num].x, timePoints[num].y)
 			})
 
 			
@@ -404,10 +261,72 @@ ready(function () {
 
 		drawCube()
 
-		timePoints.forEach((pnt, ind, arr) => {
-			prepareMagicCanvas(ind, setupObj.showNumbers)
+		function drawOneCube (pnts, ind) {
+			const pnt = pnts[ind]
+			const width = setupObj.cubeWidth
+			const parents = models[setupObj.model][ind].parents
 
-			ctx.drawImage(magicCanvas, 0, 0)
+			if (true || parents && parents.length > 0) {
+
+				prepareMagicCanvas(ind, setupObj.showNumbers)
+				
+
+				ctx.drawImage(magicCanvas,
+					pnt.x, pnt.y, width, width,
+					pnt.x, pnt.y, width, width)
+			}
+			else {
+				ctx.drawImage(hlpCanvas, pnt.x, pnt.y)
+			}
+		}
+
+		function prepareMagicCanvas2 (ind, drawNumber=false) {
+			const pnow = timePoints[ind]
+			const width = setupObj.cubeWidth
+
+			magicCanvas.width = width
+			magicCanvas.height = width
+			// mag.clearRect(pnow.x, pnow.y, width, width)
+			// mag.clearRect(0, 0, magicCanvas.width, magicCanvas.height)
+
+			mag.globalCompositeOperation = 'source-over'
+			mag.drawImage(hlpCanvas, 0, 0)
+
+			if (drawNumber) {
+				console.log('here')
+				mag.font = "30px Arial"
+				mag.fillText(''+ind, width/2, width/2)
+			}
+			
+			mag.globalCompositeOperation = setupObj.renderMode
+
+			;(models[setupObj.model][ind].parents || []).forEach(num => {
+				const posX = timePoints[num].x - pnow.x
+				const posY = timePoints[num].y - pnow.y
+
+				mag.drawImage(hlpCanvas, posX, posY)
+			})	
+		}
+
+		function drawOneCube2 (pnts, ind) {
+			const pnt = pnts[ind]
+			const width = setupObj.cubeWidth
+			const parents = models[setupObj.model][ind].parents
+
+			if (true || parents && parents.length > 0) {
+
+				prepareMagicCanvas2(ind, setupObj.showNumbers)
+				
+
+				ctx.drawImage(magicCanvas, pnt.x, pnt.y)
+			}
+			else {
+				ctx.drawImage(hlpCanvas, pnt.x, pnt.y)
+			}
+		}
+
+		timePoints.forEach((pnt, ind, arr) => {
+			drawOneCube(arr, ind)
 		})
 
 		if (!setupObj.run)
