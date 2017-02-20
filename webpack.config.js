@@ -1,7 +1,7 @@
 var path = require('path');
 
 const config = {
-  entry: ['babel-polyfill', './script.js'],
+  entry: ['babel-polyfill', './src/script.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'dist.js'
