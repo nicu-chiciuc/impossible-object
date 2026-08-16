@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "impossible-object",
+  "compatibility_date": "2026-08-16",
+  "preview_urls": true,
+  "assets": {
+    "directory": "./dist"
+  }
+}
