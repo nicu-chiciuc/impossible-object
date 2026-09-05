@@ -5,10 +5,42 @@
 	<title></title>
 	<!-- <script src="dat.gui.min.js"></script> -->
 	<script src="dist.js"></script>
+	<style>
+		.samebase-attribution {
+			align-items: center;
+			bottom: max(8px, env(safe-area-inset-bottom));
+			color: #394447;
+			display: inline-flex;
+			font: 12px system-ui, sans-serif;
+			gap: 4px;
+			left: max(8px, env(safe-area-inset-left));
+			min-height: 44px;
+			padding: 0 10px;
+			position: fixed;
+			text-decoration: none;
+			z-index: 2;
+		}
+
+		.samebase-attribution img {
+			height: 14px;
+			width: 14px;
+		}
+
+		.samebase-attribution:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+	</style>
 </head>
 
 <body>
 	<canvas id='canvas' width="800" height="800"> </canvas>
+	<a class="samebase-attribution" href="https://samebase.com" target="_blank" rel="noopener noreferrer"
+		aria-label="Managed with Samebase">
+		<span>Managed with</span>
+		<img src="./samebase-logo.svg" alt="">
+		<span>Samebase</span>
+	</a>
 
 </body>
 
