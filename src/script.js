@@ -1,5 +1,4 @@
 import "../index.html";
-
 import dat from "dat.gui/build/dat.gui.js";
 import models from "./models";
 import { triangleGrid, getLineXYatPercent, sin60, cos60 } from "./utils";
