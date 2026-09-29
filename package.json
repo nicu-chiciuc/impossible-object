@@ -7,9 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "deploy": "wrangler deploy",
-    "deploy:preview": "wrangler versions upload",
-    "deploy:dry-run": "wrangler deploy --dry-run",
-    "deploy:preview:dry-run": "wrangler versions upload --dry-run"
+    "deploy:preview": "wrangler preview",
+    "deploy:dry-run": "wrangler deploy --dry-run"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +21,7 @@
     "file-loader": "^0.11.2",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0",
-    "wrangler": "4.123.0"
+    "wrangler": "4.136.2"
   },
   "dependencies": {
     "dat.gui": "0.6.1"
