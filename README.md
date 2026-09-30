@@ -24,3 +24,11 @@ Both methods were added because I tried to decide which one was better. The `ful
 To create the project the `webpack` or `webpack --watch` commands can be used which will create a `/dist` folder.
 
 To serve this folder, `webpack-dev-server` or `http-server` or any other server can be used.
+
+## Cloudflare Worker Previews
+
+Workers Builds runs `npm run build`, then `npm run deploy` for the production
+branch or `npm run deploy:preview` for other branches.
+
+For the one-time Cloudflare setup, use the
+[Worker Previews migration guide](https://samebase.com/docs/cloudflare-previews-migration).
