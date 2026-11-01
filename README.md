@@ -1,5 +1,5 @@
 ## Demo
-The deployed version is on [nicu-chiciuc.github.io/impossible-object](https://nicu-chiciuc.github.io/impossible-object/)
+The deployed version is on [impossible-object.pfp.workers.dev](https://impossible-object.pfp.workers.dev).
 
 ![Screen capture of the project ](https://raw.githubusercontent.com/nicu-chiciuc/impossible-object/master/demo/demo.gif)
 
@@ -25,10 +25,13 @@ To create the project the `webpack` or `webpack --watch` commands can be used wh
 
 To serve this folder, `webpack-dev-server` or `http-server` or any other server can be used.
 
-## Cloudflare Worker Previews
+## Deployment
 
-Workers Builds runs `npm run build`, then `npm run deploy` for the production
-branch or `npm run deploy:preview` for other branches.
+GitHub Actions builds with npm and deploys with Alchemy. Pushes to `master`
+deploy the production Worker at https://impossible-object.pfp.workers.dev.
+Each pull request creates an `impossible-object-pr-<number>` Worker. Closing
+the pull request removes that preview.
 
-For the one-time Cloudflare setup, use the
-[Worker Previews migration guide](https://samebase.com/docs/cloudflare-previews-migration).
+Workers Builds is disabled. The production Worker is retained during stack
+removal, and each production deployment first checks the plan for resource
+creation, deletion, or replacement.
