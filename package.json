@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "deploy": "wrangler deploy",
-    "deploy:preview": "wrangler preview",
-    "deploy:dry-run": "wrangler deploy --dry-run"
+    "deploy": "alchemy deploy --env-file /dev/null --stage prod --no-input"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +19,19 @@
     "file-loader": "^0.11.2",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0",
-    "wrangler": "4.145.0"
+    "wrangler": "4.145.0",
+    "@alchemy.run/cloudflare": "2.0.0-beta.84",
+    "@effect/platform-node": "4.0.5",
+    "@samebase/alchemy-convex": "0.20.0",
+    "alchemy": "2.0.0-beta.84",
+    "convex": "1.48.0",
+    "effect": "4.0.5"
   },
   "dependencies": {
     "dat.gui": "0.6.1"
+  },
+  "overrides": {
+    "@effect/platform-node-shared": "4.0.5",
+    "@effect/sql-d1": "4.0.5"
   }
 }
