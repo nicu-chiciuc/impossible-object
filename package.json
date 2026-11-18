@@ -20,18 +20,14 @@
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0",
     "wrangler": "4.145.0",
-    "@alchemy.run/cloudflare": "2.0.0-beta.84",
-    "@effect/platform-node": "4.0.5",
-    "@samebase/alchemy-convex": "0.20.0",
-    "alchemy": "2.0.0-beta.84",
+    "@alchemy.run/cloudflare": "2.0.0-beta.87",
+    "@effect/platform-node": "4.1.4",
+    "@samebase/alchemy-convex": "0.41.0",
+    "alchemy": "2.0.0-beta.87",
     "convex": "1.48.0",
-    "effect": "4.0.5"
+    "effect": "4.1.4"
   },
   "dependencies": {
     "dat.gui": "0.6.1"
-  },
-  "overrides": {
-    "@effect/platform-node-shared": "4.0.5",
-    "@effect/sql-d1": "4.0.5"
   }
 }
