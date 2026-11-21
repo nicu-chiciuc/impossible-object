@@ -12,20 +12,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@alchemy.run/cloudflare": "2.0.0-beta.87",
+    "@effect/platform-node": "4.1.4",
+    "@samebase/alchemy-convex": "0.44.0",
+    "alchemy": "2.0.0-beta.87",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
     "babel-polyfill": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
+    "convex": "1.48.0",
+    "effect": "4.1.4",
     "file-loader": "^0.11.2",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0",
-    "wrangler": "4.145.0",
-    "@alchemy.run/cloudflare": "2.0.0-beta.87",
-    "@effect/platform-node": "4.1.4",
-    "@samebase/alchemy-convex": "0.41.0",
-    "alchemy": "2.0.0-beta.87",
-    "convex": "1.48.0",
-    "effect": "4.1.4"
+    "wrangler": "4.145.0"
   },
   "dependencies": {
     "dat.gui": "0.6.1"
